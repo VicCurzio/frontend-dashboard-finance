@@ -1,4 +1,5 @@
 import { useAuth } from '../context/AuthContext';
+import CustomButton from './common/CustomButton';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
@@ -9,8 +10,16 @@ const Navbar = () => {
                 <span className="icon">💰</span> Finanzas Pro
             </div>
             <div className="user-info">
-                <span className="user-name">Bienvenido, <strong>{user?.nombre || 'Usuario'}</strong></span>
-                <button onClick={logout} className="btn-logout">Cerrar Sesión</button>
+                <span className="user-name">
+                    Bienvenido, <strong>{user?.nombre || 'Usuario'}</strong>
+                </span>
+                <CustomButton
+                    onClick={logout}
+                    variant="danger"
+                    className="btn-logout"
+                >
+                    Cerrar Sesión
+                </CustomButton>
             </div>
         </nav>
     );

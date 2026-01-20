@@ -1,56 +1,47 @@
-import { useState } from 'react';
-import financeApi from '../api/financeApi';
+import { useFinanceForm } from '../hooks/useFinanceForm';
+import CustomInput from './common/CustomInput';
+import CustomButton from './common/CustomButton';
 
 const GastoForm = ({ onGastoCreated }) => {
-    const [formData, setFormData] = useState({
-        fecha: new Date().toISOString().split('T')[0],
-        categoria: '',
-        monto: '',
-        descripcion: ''
-    });
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await financeApi.post('/gastos', formData);
-            onGastoCreated();
-            setFormData({ ...formData, categoria: '', monto: '', descripcion: '' });
-        } catch (error) {
-            alert("Error al registrar el gasto");
-        }
-    };
+    const { formData, handleChange, handleSubmit } = useFinanceForm('/gastos', onGastoCreated);
 
     return (
         <div className="card form-container">
             <h3>Registrar Nuevo Gasto</h3>
             <form onSubmit={handleSubmit} className="horizontal-form">
-                <input
+                <CustomInput
                     type="date"
+                    name="fecha"
                     value={formData.fecha}
-                    onChange={(e) => setFormData({ ...formData, fecha: e.target.value })}
+                    onChange={handleChange}
                     required
                 />
-                <input
+                <CustomInput
                     type="text"
+                    name="categoria"
                     placeholder="Categoría (ej. Alquiler)"
                     value={formData.categoria}
-                    onChange={(e) => setFormData({ ...formData, categoria: e.target.value })}
+                    onChange={handleChange}
                     required
                 />
-                <input
+                <CustomInput
                     type="number"
+                    name="monto"
                     placeholder="Monto"
                     value={formData.monto}
-                    onChange={(e) => setFormData({ ...formData, monto: e.target.value })}
+                    onChange={handleChange}
                     required
                 />
-                <input
+                <CustomInput
                     type="text"
+                    name="descripcion"
                     placeholder="Descripción"
                     value={formData.descripcion}
-                    onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
+                    onChange={handleChange}
                 />
-                <button type="submit" className="btn danger">Guardar Gasto</button>
+                <CustomButton variant="danger" type="submit">
+                    Guardar Gasto
+                </CustomButton>
             </form>
         </div>
     );

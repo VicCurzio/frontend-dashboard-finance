@@ -7,19 +7,17 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // 1. Al cargar la app, verificamos si hay un token guardado
     useEffect(() => {
         const checkUser = async () => {
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    // Validamos el token con el endpoint /auth/me que pide tu prueba
                     const { data } = await authApi.get('/auth/me', {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     setUser(data);
                 } catch (error) {
-                    localStorage.removeItem('token'); // Token inválido o expirado
+                    localStorage.removeItem('token');
                 }
             }
             setLoading(false);
@@ -27,14 +25,12 @@ export const AuthProvider = ({ children }) => {
         checkUser();
     }, []);
 
-    // 2. Función para iniciar sesión
     const login = async (email, password) => {
         const { data } = await authApi.post('/auth/login', { email, password });
-        localStorage.setItem('token', data.token); // Guardamos el JWT
+        localStorage.setItem('token', data.token);
         setUser(data.user);
     };
 
-    // 3. Función para cerrar sesión
     const logout = () => {
         localStorage.removeItem('token');
         setUser(null);
@@ -47,5 +43,4 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// Hook personalizado para usar el contexto fácilmente
 export const useAuth = () => useContext(AuthContext);

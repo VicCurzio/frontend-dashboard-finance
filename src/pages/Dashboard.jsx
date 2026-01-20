@@ -8,20 +8,21 @@ import {
 const Dashboard = () => {
     const [chartData, setChartData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [totals, setTotals] = useState({ ingresos: 0, gastos: 0, balance: 0 });
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const { data } = await financeApi.get('/dashboard/line-chart');
-
-                // CORRECCIÓN: Tratamos la fecha como string puro (YYYY-MM-DD) 
-                // para evitar el desfase de zona horaria del navegador.
                 const formattedData = data.map(item => ({
                     ...item,
-                    // Extraemos solo la parte de la fecha antes de la 'T' o el espacio
                     fechaOriginal: item.fecha.split('T')[0]
                 }));
 
+                const ingresos = formattedData.reduce((acc, curr) => acc + curr.ventas, 0);
+                const gastos = formattedData.reduce((acc, curr) => acc + curr.gastos, 0);
+
+                setTotals({ ingresos, gastos, balance: ingresos - gastos });
                 setChartData(formattedData);
             } catch (error) {
                 console.error("Error en gráfico:", error);
@@ -32,66 +33,76 @@ const Dashboard = () => {
         fetchData();
     }, []);
 
-    // Formateador para mostrar DD/MM en el eje X
     const formatAxisDate = (tickItem) => {
         if (!tickItem) return '';
-        const [year, month, day] = tickItem.split('-');
+        const [, month, day] = tickItem.split('-');
         return `${day}/${month}`;
     };
 
-    // Formateador para el Tooltip (cartelito al pasar el mouse)
-    const formatTooltipDate = (value) => {
-        const [year, month, day] = value.split('-');
-        return `Fecha: ${day}/${month}/${year}`;
-    };
-
-    if (loading) return <div className="content">Cargando dashboard...</div>;
+    if (loading) return <div className="loading-state">Cargando dashboard...</div>;
 
     return (
-        <div className="dashboard-view">
-            <h1>📊 Panel de Control</h1>
+        <div className="dashboard-container">
+            <header className="dashboard-header">
+                <h1>📊 Panel de Control</h1>
+                <p className="subtitle">Resumen de tu actividad financiera</p>
+            </header>
 
-            <div className="card chart-container">
+            <div className="kpi-grid">
+                <div className="kpi-card glass-card">
+                    <span className="label">Total Ingresos</span>
+                    <h2 className="text-success">${totals.ingresos.toLocaleString()}</h2>
+                </div>
+                <div className="kpi-card glass-card">
+                    <span className="label">Total Gastos</span>
+                    <h2 className="text-danger">${totals.gastos.toLocaleString()}</h2>
+                </div>
+                <div className="kpi-card glass-card">
+                    <span className="label">Balance Neto</span>
+                    <h2 className={totals.balance >= 0 ? 'text-success' : 'text-danger'}>
+                        ${totals.balance.toLocaleString()}
+                    </h2>
+                </div>
+            </div>
+
+            <div className="chart-container glass-card">
                 <h3>Ventas vs Gastos (Tendencia)</h3>
-                <div style={{ width: '100%', height: '400px' }}>
+                <div className="responsive-chart-wrapper">
                     <ResponsiveContainer width="100%" height={400}>
                         <LineChart data={chartData} margin={{ top: 10, right: 30, left: 20, bottom: 10 }}>
-                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
-
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
                             <XAxis
                                 dataKey="fechaOriginal"
                                 tickFormatter={formatAxisDate}
-                                minTickGap={30}
+                                stroke="#7f8c8d"
+                                fontSize={12}
                             />
-
                             <YAxis
-                                tickFormatter={(value) => `$${value.toLocaleString()}`}
+                                tickFormatter={(v) => `$${v.toLocaleString()}`}
+                                stroke="#7f8c8d"
+                                fontSize={12}
                             />
-
                             <Tooltip
-                                labelFormatter={formatTooltipDate}
-                                formatter={(value) => [`$${value.toLocaleString()}`, ""]}
-                                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                                contentStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', border: 'none', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                                labelFormatter={(label) => `Fecha: ${label.split('-').reverse().join('/')}`}
                             />
-
-                            <Legend verticalAlign="top" height={36} />
-
+                            <Legend verticalAlign="top" height={36} iconType="circle" />
                             <Line
                                 type="monotone"
                                 dataKey="ventas"
                                 stroke="#27ae60"
-                                strokeWidth={3}
-                                dot={{ r: 4 }}
-                                activeDot={{ r: 6 }}
+                                strokeWidth={4}
+                                dot={{ r: 4, fill: '#27ae60' }}
+                                activeDot={{ r: 8 }}
                                 name="Ingresos"
                             />
                             <Line
                                 type="monotone"
                                 dataKey="gastos"
                                 stroke="#e74c3c"
-                                strokeWidth={3}
-                                dot={{ r: 4 }}
-                                activeDot={{ r: 6 }}
+                                strokeWidth={4}
+                                dot={{ r: 4, fill: '#e74c3c' }}
+                                activeDot={{ r: 8 }}
                                 name="Gastos"
                             />
                         </LineChart>

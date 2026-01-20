@@ -1,4 +1,3 @@
-// 1. Variables Globales
 $primary: #2c3e50;
 $secondary: #34495e;
 $success: #27ae60;
@@ -8,7 +7,6 @@ $white: #ffffff;
 $shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 $border-color: #e1e4e8;
 
-// 2. Reset y Estilos Base
 body {
     margin: 0;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -16,7 +14,6 @@ body {
     color: $primary;
 }
 
-// 3. Estructura Principal (Layout)
 .app-container {
     display: flex;
     flex-direction: column;
@@ -26,17 +23,16 @@ body {
 .main-wrapper {
     display: flex;
     flex: 1;
-    overflow: hidden; // Evita scroll en toda la pantalla
+    overflow: hidden;
 }
 
 .content {
     flex: 1;
     padding: 2rem;
-    overflow-y: auto; // Solo el contenido central tiene scroll
+    overflow-y: auto;
     background: $bg-light;
 }
 
-// 4. Componentes UI Reutilizables
 .card {
     background: $white;
     padding: 2rem;
@@ -79,7 +75,6 @@ body {
     }
 }
 
-// 5. Navbar
 .navbar {
     height: 60px;
     background: $primary;
@@ -103,7 +98,7 @@ body {
     }
 
     .btn-logout {
-        @extend .btn; // Hereda estilos de botón
+        @extend .btn;
         background: $danger;
         color: white;
         font-size: 0.8rem;
@@ -111,7 +106,6 @@ body {
     }
 }
 
-// 6. Sidebar (Aside)
 .sidebar {
     width: 240px;
     background: white;
@@ -151,7 +145,6 @@ body {
     }
 }
 
-// 7. Pantalla de Login (Especial)
 .login-screen {
     display: flex;
     justify-content: center;
@@ -173,12 +166,10 @@ body {
         form {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
 
             .form-group {
                 display: flex;
                 flex-direction: column;
-                gap: 0.5rem;
 
                 label {
                     font-size: 0.9rem;
@@ -210,12 +201,21 @@ body {
     }
 }
 
-// 8. Tablas y Formularios de Datos
 .header-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    gap: 20px; // Espacio entre título y filtros
+
+    h1 {
+        margin: 0;
+        font-size: 1.6rem; // Título más pequeño para evitar saltos
+        white-space: nowrap; // Evita que el título se rompa en dos líneas
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
     select {
         padding: 8px;
@@ -290,7 +290,6 @@ body {
     }
 }
 
-// 9. Dashboard KPIs y Gráficos
 .kpi-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -324,7 +323,6 @@ body {
     }
 }
 
-// Clases de utilidad
 .text-success {
     color: $success;
 }
@@ -335,4 +333,589 @@ body {
 
 .mt-2 {
     margin-top: 2rem;
+}
+
+.filter-container {
+    display: flex;
+    gap: 5px;
+    background: #eee;
+    padding: 5px;
+    border-radius: 5px;
+    align-items: center;
+
+    select {
+        border: none;
+        background: transparent;
+        outline: none;
+        cursor: pointer;
+    }
+}
+
+.custom-input {
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    font-family: inherit;
+
+    &:focus {
+        outline: 2px solid $primary;
+        border-color: transparent;
+    }
+
+    &.search-input {
+        width: 140px;
+
+        &.year {
+            width: 80px;
+        }
+    }
+}
+
+.import-label {
+    @extend .btn;
+    @extend .primary;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit-card {
+    margin-bottom: 20px;
+
+    &.gasto {
+        border: 2px solid $danger;
+    }
+
+    &.venta {
+        border: 2px solid $success;
+    }
+}
+
+// Dentro de .login-card o al final de la sección 7
+.btn-login-full {
+    width: 100%;
+    margin-top: 10px;
+}
+
+// Para que los links en el login/register no se vean azules por defecto
+.login-card a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.actions-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.filter-container {
+    display: flex;
+    gap: 0; // Pegamos los elementos para que parezca una sola barra
+    background: #fff;
+    padding: 2px;
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    align-items: center;
+
+    select {
+        border: none;
+        padding: 8px 10px;
+        background: transparent;
+        border-right: 1px solid #eee;
+    }
+
+    .custom-input.search-input {
+        border: none;
+        width: 180px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        border-radius: 4px;
+        padding: 6px 12px;
+    }
+}
+
+.login-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+
+    .separator {
+        text-align: center;
+        color: #7f8c8d;
+        font-size: 0.8rem;
+        margin: 5px 0;
+        position: relative;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #ddd;
+        }
+
+        &::before {
+            left: 0;
+        }
+
+        &::after {
+            right: 0;
+        }
+    }
+}
+
+.btn-login-full {
+    width: 100%;
+}
+
+// Variables adicionales para el efecto "magic"
+$glass-bg: rgba(255, 255, 255, 0.9);
+$glass-border: rgba(255, 255, 255, 0.2);
+$accent-gradient: linear-gradient(135deg, #3498db, #2c3e50);
+
+.login-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    // FONDO ANIMADO: Un gradiente que se mueve suavemente
+    background: linear-gradient(-45deg, $primary, $secondary, #1a252f, #2c3e50);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+
+    // Decoración: Círculos abstractos de fondo para dar profundidad
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        z-index: 0;
+    }
+
+    &::before {
+        top: -100px;
+        left: -100px;
+    }
+
+    &::after {
+        bottom: -100px;
+        right: -100px;
+    }
+
+    .login-card {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 420px;
+        padding: 2.5rem;
+        background: $glass-bg;
+        backdrop-filter: blur(10px); // Efecto desenfoque moderno
+        border: 1px solid $glass-border;
+        border-radius: 16px; // Bordes más redondeados
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: $primary;
+            font-weight: 800;
+            letter-spacing: -1px;
+            font-size: 2rem;
+        }
+
+        // Subtítulo pequeño opcional (puedes añadirlo en el JSX)
+        .subtitle {
+            display: block;
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        form {
+            .form-group {
+                margin-bottom: 1.5rem;
+
+                label {
+                    font-size: 0.85rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    color: $secondary;
+                    margin-bottom: 8px;
+                }
+
+                input {
+                    height: 45px;
+                    border-radius: 8px;
+                    border: 1px solid #ddd;
+                    transition: all 0.3s ease;
+                    background: #fdfdfd;
+
+                    &:focus {
+                        box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+                        border-color: $primary;
+                    }
+                }
+            }
+        }
+
+        .error-msg {
+            animation: shake 0.4s ease-in-out;
+            border-left: 4px solid $danger;
+        }
+    }
+}
+
+// ANIMACIONES
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+// 1. Variables
+$primary: #2c3e50;
+$secondary: #34495e;
+$success: #27ae60;
+$danger: #e74c3c;
+$bg-light: #f4f7f6;
+$white: #ffffff;
+$shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$border-color: #e1e4e8;
+$glass-bg: rgba(255, 255, 255, 0.95);
+
+// 2. Mixins para evitar repetición
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// 3. Base
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: $bg-light;
+    color: $primary;
+}
+
+// 4. Componentes Globales
+.btn {
+    padding: 8px 16px; // Reducido para que no sea tan tosco
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+
+    &.primary {
+        background: $primary;
+        color: $white;
+    }
+
+    &.secondary {
+        background: transparent;
+        color: $primary;
+        border: 1px solid $border-color;
+
+        &:hover {
+            background: #f8f9fa;
+            border-color: $primary;
+        }
+    }
+}
+
+// 5. Login / Register Screen
+.login-screen {
+    @include flex-center;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, $primary, $secondary, #1a252f, #2c3e50);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+
+    .login-card {
+        width: 90%;
+        max-width: 380px; // Un poco más angosto para elegancia
+        padding: 2rem;
+        background: $glass-bg;
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+        h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.7rem;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            display: block;
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem; // Espaciado más compacto
+
+            label {
+                display: block;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                font-weight: 700;
+                margin-bottom: 5px;
+                color: $secondary;
+            }
+
+            input {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 10px; // Padding reducido
+                height: 40px; // Altura fija más pequeña
+                border-radius: 6px;
+                border: 1px solid $border-color;
+                font-size: 0.9rem;
+
+                &:focus {
+                    outline: none;
+                    border-color: $primary;
+                    box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+                }
+            }
+        }
+    }
+}
+
+// 6. Contenedor de Botones (Login/Registro)
+.login-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .btn-login-full {
+        width: 100%;
+    }
+
+    .separator {
+        text-align: center;
+        color: #bdc3c7;
+        font-size: 0.75rem;
+        margin: 5px 0;
+        position: relative;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 42%;
+            height: 1px;
+            background: #eee;
+        }
+
+        &::before {
+            left: 0;
+        }
+
+        &::after {
+            right: 0;
+        }
+    }
+}
+
+// 7. Animaciones
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+// --- AJUSTES DE TAMAÑO COMPACTO ---
+
+.login-card {
+
+    h2 {
+        margin-bottom: 0.2rem !important;
+        font-size: 1.5rem !important; // Título un poco más pequeño
+    }
+
+    .subtitle {
+        margin-bottom: 1.2rem !important;
+    }
+
+    .form-group {
+
+        label {
+            font-size: 0.7rem !important; // Label más sutil
+        }
+
+        input {
+            height: 36px !important; // Altura reducida (estándar de sistema profesional)
+            padding: 8px 12px !important; // Espaciado interno más apretado
+            font-size: 0.85rem !important;
+            border-radius: 5px !important;
+        }
+    }
+}
+
+.login-actions {
+    gap: 8px !important; // Botones más juntos
+
+    .btn {
+        padding: 8px 12px !important; // Botones menos "gordos"
+        font-size: 0.85rem !important;
+    }
+
+    .separator {
+        margin: 2px 0 !important; // Separador casi invisible
+    }
+}
+
+// Ajuste opcional para la versión horizontal (tablas/filtros)
+.custom-input {
+    height: 32px !important;
+    padding: 5px 10px !important;
+    font-size: 0.85rem !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px); // Desenfoque de fondo
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    @extend .card; // Hereda el estilo de tus tarjetas
+    width: 90%;
+    max-width: 400px;
+    padding: 1.5rem;
+    transform: translateY(0);
+    animation: slideUp 0.3s ease-out;
+
+    h3 {
+        margin-top: 0;
+        color: $primary;
+        font-size: 1.2rem;
+    }
+
+    p {
+        color: $secondary;
+        margin: 1.5rem 0;
+        line-height: 1.5;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

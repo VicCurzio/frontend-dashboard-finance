@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const financeApi = axios.create({
-    baseURL: 'http://localhost:3002', // Puerto de tu micro de Ventas/Gastos
+    baseURL: 'http://localhost:3002',
 });
 
-// Interceptor para adjuntar el token automáticamente
 financeApi.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     if (token) {
