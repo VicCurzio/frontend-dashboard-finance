@@ -45,7 +45,7 @@ const Dashboard = () => {
 
     if (loading) return <div className="loading-state">Cargando dashboard...</div>;
 
-    const hasData = chartData.length > 0;
+    const hasData = chartData && chartData.length > 0;
 
     return (
         <div className="dashboard-container">
@@ -71,10 +71,11 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="chart-container glass-card">
-                <h3>Ventas vs Gastos (Tendencia)</h3>
-                <div className="responsive-chart-wrapper">
-                    {hasData ? (
+            <div className="chart-container glass-card" style={{ marginTop: '20px' }}>
+                <h3 style={{ marginBottom: '20px' }}>Ventas vs Gastos (Tendencia)</h3>
+
+                {hasData ? (
+                    <div className="responsive-chart-wrapper">
                         <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={chartData} margin={{ top: 10, right: 30, left: 20, bottom: 10 }}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
@@ -114,13 +115,13 @@ const Dashboard = () => {
                                 />
                             </LineChart>
                         </ResponsiveContainer>
-                    ) : (
-                        <div className="no-data-info text-center">
-                            <p>📉 No hay gráficos que mostrar</p>
-                            <span>Aún no tienes movimientos registrados en este periodo.</span>
-                        </div>
-                    )}
-                </div>
+                    </div>
+                ) : (
+                    <div className="no-data-card" style={{ padding: '60px 20px', textAlign: 'center', color: '#95a5a6' }}>
+                        <p style={{ fontSize: '1.2rem', marginBottom: '8px' }}>📉 No hay gráficos que mostrar</p>
+                        <span style={{ fontSize: '0.9rem' }}>Aún no tienes movimientos registrados en este periodo.</span>
+                    </div>
+                )}
             </div>
         </div>
     );
