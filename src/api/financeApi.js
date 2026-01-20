@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const financeApi = axios.create({
-    baseURL: 'http://localhost:3002',
+    baseURL: import.meta.env.VITE_API_FINANCE,
 });
 
 financeApi.interceptors.request.use((config) => {

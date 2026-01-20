@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export const authApi = axios.create({
-    baseURL: 'http://localhost:3001',
+    baseURL: import.meta.env.VITE_API_AUTH,
 });
 
 export const financeApi = axios.create({
-    baseURL: 'http://localhost:3002',
+    baseURL: import.meta.env.VITE_API_FINANCE,
 });
 
 financeApi.interceptors.request.use((config) => {

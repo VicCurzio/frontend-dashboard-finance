@@ -1,69 +1,87 @@
-# 📊 Financial Dashboard - Frontend
+# 📊 Dashboard Financiero - Frontend (React + SASS)
 
-Este repositorio contiene la interfaz de usuario desarrollada en **React** para el sistema de gestión de finanzas personales. La aplicación está diseñada bajo una arquitectura de microservicios, consumiendo datos de forma simultánea de un servicio de autenticación y un servicio financiero.
+Este repositorio contiene la interfaz de usuario desarrollada en React para el sistema de gestión de finanzas.
+La aplicación actúa como el orquestador visual de una arquitectura basada en microservicios, consumiendo datos de forma simultánea desde:
 
-## 🎯 Objetivo de la Prueba
-Desarrollar una aplicación robusta y escalable que demuestre el dominio de:
-- Consumo de múltiples APIs independientes.
-- Gestión de estado complejo y efectos en React.
-- Estilizado profesional y modular con **SASS** sin librerías de componentes externas.
-- Implementación de flujos de carga masiva de datos.
+- Un servicio de autenticación (Drizzle ORM)
+- Un servicio financiero (Sequelize)
 
-## 🚀 Características
-- **Dashboard Integral:** Visualización de KPIs (Ventas, Gastos, Saldo) y gráficos de tendencia con **Recharts**.
-- **Gestión de Movimientos:** CRUD completo para Ventas y Gastos con categorización.
-- **Filtros Dinámicos:** Segmentación de datos por Día, Semana, Mes o Año.
-- **Importación Masiva:** Procesamiento de archivos JSON para carga rápida de registros.
-- **Arquitectura de Estilos:** Uso avanzado de SASS (Variables globales, anidamiento y herencia con `@extend`).
+## 🎯 Requisitos de la Prueba Cumplidos
 
-## 🛠️ Tecnologías
-- **React 18** (Vite)
-- **SASS** (Arquitectura modular de estilos)
-- **Recharts** (Gráficos interactivos)
-- **Axios** (Configurado con interceptores para manejo de JWT)
-- **React Router Dom** (Navegación protegida)
+- **Arquitectura desacoplada**: El frontend consume dos microservicios independientes que comparten la misma base de datos.
+- **Sin librerías de UI**: Estilizado 100% manual con SASS (variables, mixins y anidamiento).
+- **Seguridad JWT**: Implementación completa del flujo de autenticación y protección de rutas.
+- **Visualización de datos**: Uso de Recharts para el análisis de tendencias financieras.
 
-## 📦 Instalación
+## 🚀 Características Principales
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone [https://github.com/tu-usuario/nombre-del-repo.git](https://github.com/tu-usuario/nombre-del-repo.git)
-   cd nombre-del-repo
-Instalar dependencias:
+- **Panel de Control (Dashboard)**: Resumen de KPIs (Ventas, Gastos, Balance Neto) y gráfico de líneas dinámico.
+- **Gestión CRUD**: Control total sobre ingresos y egresos con borrado lógico (soft delete).
+- **Seguridad Avanzada**:
+  - ProtectedRoute: Bloquea el acceso a usuarios no autenticados.
+  - PublicRoute: Impide que usuarios logueados vuelvan a Login/Register.
+- **Filtros de Tiempo**: Segmentación por día, semana, mes y año directamente desde la interfaz.
+- **Importación Masiva**: Botón dedicado para la carga de archivos JSON hacia la base de datos vía microservicio.
 
-Bash
+## 🛠️ Stack Tecnológico
 
+- React 18 (Vite)
+- SASS (Arquitectura modular y responsive)
+- Recharts (Visualización interactiva)
+- Axios (Interceptores para inyección de JWT y manejo de errores 401)
+- React Router DOM v6 (Navegación protegida)
+
+## 📦 Instalación y Configuración
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/VicCurzio/frontend-dashboard-finance.git
+cd frontend-dashboard-finance
+```
+
+### 2. Instalar dependencias
+```bash
 npm install
-Variables de Entorno: Crea un archivo .env en la raíz y configura las rutas de tus microservicios:
+```
 
-Fragmento de código
+### 3. Variables de Entorno (.env)
 
-VITE_API_AUTH=http://localhost:3001/api
-VITE_API_FINANCE=http://localhost:3000/api
-Correr la App:
+Crea un archivo `.env` en la raíz del proyecto con las URLs de tus microservicios (asegúrate de que los puertos coincidan con tus backends):
+```
+VITE_API_AUTH=http://localhost:3002/api
+VITE_API_FINANCE=http://localhost:3001/api
+```
 
-Bash
-
+### 4. Ejecutar en modo desarrollo
+```bash
 npm run dev
-📥 Prueba de Carga Masiva (JSON)
-Para facilitar la evaluación, se han incluido dos archivos de ejemplo en la raíz del proyecto (o carpeta /public) que contienen datos normalizados:
+```
 
-importar_ventas.json: Contiene un set de 15 registros de ventas con diferentes fechas y categorías.
+## 🎨 Estructura de Estilos (SASS)
 
-importar_gastos.json: Contiene un set de 15 registros de gastos para visualizar el balance en el gráfico.
+Se ha seguido una metodología de diseño limpia y escalable:
 
-Instrucciones: 1. Ve a la sección de Ventas o Gastos. 2. Haz clic en el botón 📥 Importar JSON. 3. Selecciona el archivo correspondiente y los datos se verán reflejados inmediatamente.
+- **Variables Globales**: Centralización de colores corporativos ($primary, $success, $danger) y tipografías.
+- **Mixins y Flexbox**: Uso de @mixin para centrado absoluto y estructuras de tarjetas, evitando código redundante.
+- **Glassmorphism**: Efectos de desenfoque y transparencia en modales y tarjetas para una estética moderna.
+- **Animaciones**: Transiciones suaves en modales de éxito y mensajes de error (shake effect).
 
-🎨 Estructura de Estilos (SASS)
-Se implementó una hoja de estilos organizada que utiliza:
+## 📥 Pruebas de Carga Masiva (JSON)
 
-Variables Globales: Control de paleta de colores ($primary, $success, $danger), sombras y espaciados.
+En la raiz del proyecto encontrarás archivos de ejemplo:
 
-Herencia (@extend): Reutilización de estructuras complejas como .card y .btn para mantener un código DRY.
+- importar_ventas.json
+- importar_gastos.json
 
-Layout: Sistema de Scroll independiente para el contenido principal mediante un contenedor flexible.
+**Pasos:**
 
-🛡️ Notas Técnicas
-Consistencia de Datos: Se aplica una normalización de fechas ISO para garantizar que no haya desfases de días al importar datos desde diferentes zonas horarias.
+1. Navega a la sección de Ventas o Gastos.
+2. Haz clic en Importar JSON.
+3. Selecciona el archivo y observa cómo el Dashboard se actualiza automáticamente con los nuevos datos.
 
-Seguridad: Los interceptores de Axios adjuntan el token de autorización en cada solicitud y manejan la redirección al login en caso de tokens expirados.
+## 💡 Nota sobre Microservicios
+
+Esta aplicación espera que los siguientes microservicios estén activos:
+
+- **Auth Service**: 
+- **Finance Service**: 
