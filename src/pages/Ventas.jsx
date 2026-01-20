@@ -40,7 +40,7 @@ const Ventas = () => {
     return (
         <div className="ventas-view">
             <div className="header-section">
-                <h1>💰 Registro de Ventas</h1>
+                <h1>📈 Registro de Ventas</h1>
                 <FilterBar
                     tipoFiltro={tipoFiltro}
                     onTipoChange={handleTipoFiltroChange}
