@@ -83,5 +83,5 @@ En la raiz del proyecto encontrarás archivos de ejemplo:
 
 Esta aplicación espera que los siguientes microservicios estén activos:
 
-- **Auth Service**: 
-- **Finance Service**: 
+- **Auth Service**: https://backend-auth-drizzle-7xql.onrender.com
+- **Finance Service**: https://backend-finance-sequelize.onrender.com
