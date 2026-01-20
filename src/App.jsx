@@ -9,6 +9,7 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import './styles/main.scss';
 import PublicRoute from './components/PublicRoute';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/ventas" element={<Ventas />} />
           <Route path="/gastos" element={<Gastos />} />
+          <Route path="/perfil" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />
