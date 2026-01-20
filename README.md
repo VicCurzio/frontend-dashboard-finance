@@ -1,16 +1,69 @@
-# React + Vite
+# 📊 Financial Dashboard - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositorio contiene la interfaz de usuario desarrollada en **React** para el sistema de gestión de finanzas personales. La aplicación está diseñada bajo una arquitectura de microservicios, consumiendo datos de forma simultánea de un servicio de autenticación y un servicio financiero.
 
-Currently, two official plugins are available:
+## 🎯 Objetivo de la Prueba
+Desarrollar una aplicación robusta y escalable que demuestre el dominio de:
+- Consumo de múltiples APIs independientes.
+- Gestión de estado complejo y efectos en React.
+- Estilizado profesional y modular con **SASS** sin librerías de componentes externas.
+- Implementación de flujos de carga masiva de datos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Características
+- **Dashboard Integral:** Visualización de KPIs (Ventas, Gastos, Saldo) y gráficos de tendencia con **Recharts**.
+- **Gestión de Movimientos:** CRUD completo para Ventas y Gastos con categorización.
+- **Filtros Dinámicos:** Segmentación de datos por Día, Semana, Mes o Año.
+- **Importación Masiva:** Procesamiento de archivos JSON para carga rápida de registros.
+- **Arquitectura de Estilos:** Uso avanzado de SASS (Variables globales, anidamiento y herencia con `@extend`).
 
-## React Compiler
+## 🛠️ Tecnologías
+- **React 18** (Vite)
+- **SASS** (Arquitectura modular de estilos)
+- **Recharts** (Gráficos interactivos)
+- **Axios** (Configurado con interceptores para manejo de JWT)
+- **React Router Dom** (Navegación protegida)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Instalación
 
-## Expanding the ESLint configuration
+1. **Clonar el repositorio:**
+   ```bash
+   git clone [https://github.com/tu-usuario/nombre-del-repo.git](https://github.com/tu-usuario/nombre-del-repo.git)
+   cd nombre-del-repo
+Instalar dependencias:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Bash
+
+npm install
+Variables de Entorno: Crea un archivo .env en la raíz y configura las rutas de tus microservicios:
+
+Fragmento de código
+
+VITE_API_AUTH=http://localhost:3001/api
+VITE_API_FINANCE=http://localhost:3000/api
+Correr la App:
+
+Bash
+
+npm run dev
+📥 Prueba de Carga Masiva (JSON)
+Para facilitar la evaluación, se han incluido dos archivos de ejemplo en la raíz del proyecto (o carpeta /public) que contienen datos normalizados:
+
+importar_ventas.json: Contiene un set de 15 registros de ventas con diferentes fechas y categorías.
+
+importar_gastos.json: Contiene un set de 15 registros de gastos para visualizar el balance en el gráfico.
+
+Instrucciones: 1. Ve a la sección de Ventas o Gastos. 2. Haz clic en el botón 📥 Importar JSON. 3. Selecciona el archivo correspondiente y los datos se verán reflejados inmediatamente.
+
+🎨 Estructura de Estilos (SASS)
+Se implementó una hoja de estilos organizada que utiliza:
+
+Variables Globales: Control de paleta de colores ($primary, $success, $danger), sombras y espaciados.
+
+Herencia (@extend): Reutilización de estructuras complejas como .card y .btn para mantener un código DRY.
+
+Layout: Sistema de Scroll independiente para el contenido principal mediante un contenedor flexible.
+
+🛡️ Notas Técnicas
+Consistencia de Datos: Se aplica una normalización de fechas ISO para garantizar que no haya desfases de días al importar datos desde diferentes zonas horarias.
+
+Seguridad: Los interceptores de Axios adjuntan el token de autorización en cada solicitud y manejan la redirección al login en caso de tokens expirados.

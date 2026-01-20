@@ -1,0 +1,50 @@
+[
+    {
+        "fecha": "2026-01-19",
+        "categoria": "Alquiler",
+        "monto": 2000.00,
+        "descripcion": "Pago oficina enero"
+    },
+    {
+        "fecha": "2026-01-18",
+        "categoria": "Sueldos",
+        "monto": 3500.00,
+        "descripcion": "Pago administrativo quincena"
+    },
+    {
+        "fecha": "2026-01-16",
+        "categoria": "Servicios",
+        "monto": 150.00,
+        "descripcion": "Internet Fibra Óptica"
+    },
+    {
+        "fecha": "2026-01-14",
+        "categoria": "Marketing",
+        "monto": 500.00,
+        "descripcion": "Publicidad Facebook Ads"
+    },
+    {
+        "fecha": "2026-01-12",
+        "categoria": "Servicios",
+        "monto": 80.00,
+        "descripcion": "Suministro Luz y Agua"
+    },
+    {
+        "fecha": "2026-01-08",
+        "categoria": "Insumos",
+        "monto": 200.00,
+        "descripcion": "Papelería y suministros de café"
+    },
+    {
+        "fecha": "2026-01-02",
+        "categoria": "Marketing",
+        "monto": 300.00,
+        "descripcion": "Campañas Google Ads"
+    },
+    {
+        "fecha": "2025-12-20",
+        "categoria": "Alquiler",
+        "monto": 2000.00,
+        "descripcion": "Pago oficina diciembre (Año anterior)"
+    }
+]

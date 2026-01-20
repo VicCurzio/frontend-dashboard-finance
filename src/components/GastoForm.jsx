@@ -12,9 +12,8 @@ const GastoForm = ({ onGastoCreated }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Endpoint: POST /gastos
             await financeApi.post('/gastos', formData);
-            onGastoCreated(); // Recarga la tabla de gastos
+            onGastoCreated();
             setFormData({ ...formData, categoria: '', monto: '', descripcion: '' });
         } catch (error) {
             alert("Error al registrar el gasto");
@@ -23,7 +22,7 @@ const GastoForm = ({ onGastoCreated }) => {
 
     return (
         <div className="card form-container">
-            <h3>📉 Registrar Nuevo Gasto</h3>
+            <h3>Registrar Nuevo Gasto</h3>
             <form onSubmit={handleSubmit} className="horizontal-form">
                 <input
                     type="date"

@@ -1,0 +1,44 @@
+[
+    {
+        "fecha": "2026-01-19",
+        "categoria": "E-commerce",
+        "monto": 4500.00,
+        "descripcion": "Venta minorista de dispositivos electrónicos y periféricos"
+    },
+    {
+        "fecha": "2026-01-18",
+        "categoria": "Servicios",
+        "monto": 1200.00,
+        "descripcion": "Suscripción de mantenimiento preventivo mensual - Nivel Premium"
+    },
+    {
+        "fecha": "2026-01-17",
+        "categoria": "E-commerce",
+        "monto": 300.50,
+        "descripcion": "Venta de accesorios para dispositivos móviles y protección"
+    },
+    {
+        "fecha": "2026-01-15",
+        "categoria": "Consultoría",
+        "monto": 5000.00,
+        "descripcion": "Honorarios por servicios de asesoría legal y contractual"
+    },
+    {
+        "fecha": "2026-01-10",
+        "categoria": "Servicios",
+        "monto": 800.00,
+        "descripcion": "Asistencia remota especializada y soporte técnico de sistemas"
+    },
+    {
+        "fecha": "2026-01-05",
+        "categoria": "E-commerce",
+        "monto": 150.00,
+        "descripcion": "Venta de conectores y cables de alta definición (HDMI)"
+    },
+    {
+        "fecha": "2025-12-28",
+        "categoria": "Consultoría",
+        "monto": 2500.00,
+        "descripcion": "Consultoría de cierre de proyecto y auditoría de fin de año 2025"
+    }
+]
