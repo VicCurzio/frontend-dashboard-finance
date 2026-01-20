@@ -20,7 +20,9 @@ const Gastos = () => {
             await financeApi.put(`/gastos/${editando.id}`, editando);
             setEditando(null);
             refresh();
-        } catch (error) { console.error("Error al actualizar"); }
+        } catch (error) {
+            console.error("Error al actualizar:", error);
+        }
     };
 
     return (
@@ -41,9 +43,22 @@ const Gastos = () => {
                 <div className="edit-card gasto">
                     <h3>Editar Gasto</h3>
                     <form onSubmit={handleUpdate} className="horizontal-form">
-                        <CustomInput value={editando.categoria || ''} onChange={(e) => setEditando({ ...editando, categoria: e.target.value })} placeholder="Categoría" />
-                        <CustomInput value={editando.descripcion} onChange={(e) => setEditando({ ...editando, descripcion: e.target.value })} placeholder="Descripción" />
-                        <CustomInput type="number" value={editando.monto} onChange={(e) => setEditando({ ...editando, monto: e.target.value })} placeholder="Monto" />
+                        <CustomInput
+                            value={editando.categoria || ''}
+                            onChange={(e) => setEditando({ ...editando, categoria: e.target.value })}
+                            placeholder="Categoría"
+                        />
+                        <CustomInput
+                            value={editando.descripcion}
+                            onChange={(e) => setEditando({ ...editando, descripcion: e.target.value })}
+                            placeholder="Descripción"
+                        />
+                        <CustomInput
+                            type="number"
+                            value={editando.monto}
+                            onChange={(e) => setEditando({ ...editando, monto: e.target.value })}
+                            placeholder="Monto"
+                        />
                         <CustomButton variant="success" type="submit">Guardar</CustomButton>
                         <CustomButton variant="danger" type="button" onClick={() => setEditando(null)}>Cancelar</CustomButton>
                     </form>
@@ -51,7 +66,19 @@ const Gastos = () => {
             )}
 
             <GastoForm onGastoCreated={refresh} />
-            <DataTable items={data} onEdit={setEditando} onDelete={handleDeleteClick} esGasto={true} />
+
+            {data && data.length > 0 ? (
+                <DataTable
+                    items={data}
+                    onEdit={setEditando}
+                    onDelete={handleDeleteClick}
+                    esGasto={true}
+                />
+            ) : (
+                <div className="no-data-card glass-card" style={{ padding: '40px', textAlign: 'center', marginTop: '20px', color: '#7f8c8d' }}>
+                    <p>No hay gastos registrados que coincidan con el filtro seleccionado.</p>
+                </div>
+            )}
 
             <ConfirmModal
                 isOpen={modalConfig.show}

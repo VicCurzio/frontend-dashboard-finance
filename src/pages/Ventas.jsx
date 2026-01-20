@@ -78,7 +78,19 @@ const Ventas = () => {
             )}
 
             <VentaForm onVentaCreated={refresh} />
-            <DataTable items={data} onEdit={setEditando} onDelete={handleDeleteClick} esGasto={false} />
+
+            {data && data.length > 0 ? (
+                <DataTable
+                    items={data}
+                    onEdit={setEditando}
+                    onDelete={handleDeleteClick}
+                    esGasto={false}
+                />
+            ) : (
+                <div className="no-data-card glass-card" style={{ padding: '40px', textAlign: 'center', marginTop: '20px', color: '#7f8c8d' }}>
+                    <p>No se encontraron registros de ventas para este periodo.</p>
+                </div>
+            )}
 
             <ConfirmModal
                 isOpen={modalConfig.show}
