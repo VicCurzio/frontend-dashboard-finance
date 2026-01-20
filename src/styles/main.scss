@@ -6,6 +6,9 @@ $bg-light: #f4f7f6;
 $white: #ffffff;
 $shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 $border-color: #e1e4e8;
+$glass-bg: rgba(255, 255, 255, 0.9);
+$glass-border: rgba(255, 255, 255, 0.2);
+$accent-gradient: linear-gradient(135deg, #3498db, #2c3e50);
 
 body {
     margin: 0;
@@ -206,12 +209,12 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    gap: 20px; // Espacio entre título y filtros
+    gap: 20px;
 
     h1 {
         margin: 0;
-        font-size: 1.6rem; // Título más pequeño para evitar saltos
-        white-space: nowrap; // Evita que el título se rompa en dos líneas
+        font-size: 1.6rem;
+        white-space: nowrap;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -392,13 +395,11 @@ body {
     }
 }
 
-// Dentro de .login-card o al final de la sección 7
 .btn-login-full {
     width: 100%;
     margin-top: 10px;
 }
 
-// Para que los links en el login/register no se vean azules por defecto
 .login-card a {
     text-decoration: none;
 
@@ -416,7 +417,7 @@ body {
 
 .filter-container {
     display: flex;
-    gap: 0; // Pegamos los elementos para que parezca una sola barra
+    gap: 0;
     background: #fff;
     padding: 2px;
     border: 1px solid $border-color;
@@ -482,11 +483,6 @@ body {
     width: 100%;
 }
 
-// Variables adicionales para el efecto "magic"
-$glass-bg: rgba(255, 255, 255, 0.9);
-$glass-border: rgba(255, 255, 255, 0.2);
-$accent-gradient: linear-gradient(135deg, #3498db, #2c3e50);
-
 .login-screen {
     display: flex;
     justify-content: center;
@@ -494,13 +490,10 @@ $accent-gradient: linear-gradient(135deg, #3498db, #2c3e50);
     min-height: 100vh;
     position: relative;
     overflow: hidden;
-
-    // FONDO ANIMADO: Un gradiente que se mueve suavemente
     background: linear-gradient(-45deg, $primary, $secondary, #1a252f, #2c3e50);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 
-    // Decoración: Círculos abstractos de fondo para dar profundidad
     &::before,
     &::after {
         content: "";
@@ -529,9 +522,9 @@ $accent-gradient: linear-gradient(135deg, #3498db, #2c3e50);
         max-width: 420px;
         padding: 2.5rem;
         background: $glass-bg;
-        backdrop-filter: blur(10px); // Efecto desenfoque moderno
+        backdrop-filter: blur(10px);
         border: 1px solid $glass-border;
-        border-radius: 16px; // Bordes más redondeados
+        border-radius: 16px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         transform: translateY(0);
         transition: transform 0.3s ease;
@@ -549,7 +542,6 @@ $accent-gradient: linear-gradient(135deg, #3498db, #2c3e50);
             font-size: 2rem;
         }
 
-        // Subtítulo pequeño opcional (puedes añadirlo en el JSX)
         .subtitle {
             display: block;
             text-align: center;
@@ -592,7 +584,6 @@ $accent-gradient: linear-gradient(135deg, #3498db, #2c3e50);
     }
 }
 
-// ANIMACIONES
 @keyframes gradientBG {
     0% {
         background-position: 0% 50%;
@@ -623,25 +614,12 @@ $accent-gradient: linear-gradient(135deg, #3498db, #2c3e50);
     }
 }
 
-// 1. Variables
-$primary: #2c3e50;
-$secondary: #34495e;
-$success: #27ae60;
-$danger: #e74c3c;
-$bg-light: #f4f7f6;
-$white: #ffffff;
-$shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-$border-color: #e1e4e8;
-$glass-bg: rgba(255, 255, 255, 0.95);
-
-// 2. Mixins para evitar repetición
 @mixin flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-// 3. Base
 body {
     margin: 0;
     font-family: 'Segoe UI', Roboto, sans-serif;
@@ -649,9 +627,8 @@ body {
     color: $primary;
 }
 
-// 4. Componentes Globales
 .btn {
-    padding: 8px 16px; // Reducido para que no sea tan tosco
+    padding: 8px 16px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -693,7 +670,6 @@ body {
     }
 }
 
-// 5. Login / Register Screen
 .login-screen {
     @include flex-center;
     min-height: 100vh;
@@ -703,7 +679,7 @@ body {
 
     .login-card {
         width: 90%;
-        max-width: 380px; // Un poco más angosto para elegancia
+        max-width: 380px;
         padding: 2rem;
         background: $glass-bg;
         backdrop-filter: blur(10px);
@@ -726,7 +702,7 @@ body {
         }
 
         .form-group {
-            margin-bottom: 1rem; // Espaciado más compacto
+            margin-bottom: 1rem;
 
             label {
                 display: block;
@@ -740,8 +716,8 @@ body {
             input {
                 width: 100%;
                 box-sizing: border-box;
-                padding: 10px; // Padding reducido
-                height: 40px; // Altura fija más pequeña
+                padding: 10px;
+                height: 40px;
                 border-radius: 6px;
                 border: 1px solid $border-color;
                 font-size: 0.9rem;
@@ -756,7 +732,6 @@ body {
     }
 }
 
-// 6. Contenedor de Botones (Login/Registro)
 .login-actions {
     display: flex;
     flex-direction: column;
@@ -793,7 +768,6 @@ body {
     }
 }
 
-// 7. Animaciones
 @keyframes gradientBG {
     0% {
         background-position: 0% 50%;
@@ -808,13 +782,11 @@ body {
     }
 }
 
-// --- AJUSTES DE TAMAÑO COMPACTO ---
-
 .login-card {
 
     h2 {
         margin-bottom: 0.2rem !important;
-        font-size: 1.5rem !important; // Título un poco más pequeño
+        font-size: 1.5rem !important;
     }
 
     .subtitle {
@@ -824,12 +796,12 @@ body {
     .form-group {
 
         label {
-            font-size: 0.7rem !important; // Label más sutil
+            font-size: 0.7rem !important;
         }
 
         input {
-            height: 36px !important; // Altura reducida (estándar de sistema profesional)
-            padding: 8px 12px !important; // Espaciado interno más apretado
+            height: 36px !important;
+            padding: 8px 12px !important;
             font-size: 0.85rem !important;
             border-radius: 5px !important;
         }
@@ -837,19 +809,18 @@ body {
 }
 
 .login-actions {
-    gap: 8px !important; // Botones más juntos
+    gap: 8px !important;
 
     .btn {
-        padding: 8px 12px !important; // Botones menos "gordos"
+        padding: 8px 12px !important;
         font-size: 0.85rem !important;
     }
 
     .separator {
-        margin: 2px 0 !important; // Separador casi invisible
+        margin: 2px 0 !important;
     }
 }
 
-// Ajuste opcional para la versión horizontal (tablas/filtros)
 .custom-input {
     height: 32px !important;
     padding: 5px 10px !important;
@@ -863,7 +834,7 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px); // Desenfoque de fondo
+    backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -872,7 +843,7 @@ body {
 }
 
 .modal-content {
-    @extend .card; // Hereda el estilo de tus tarjetas
+    @extend .card;
     width: 90%;
     max-width: 400px;
     padding: 1.5rem;
@@ -917,5 +888,65 @@ body {
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+.modal-body.text-center {
+    text-align: center;
+}
+
+.modal-footer.centered {
+    justify-content: center;
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1rem;
+
+    &.success {
+        background: rgba(39, 174, 96, 0.1);
+        color: #27ae60;
+        border: 2px solid #27ae60;
+    }
+}
+
+.btn-wide {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.scale-up {
+    animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.custom-tooltip-wrapper {
+    .recharts-default-tooltip {
+        background-color: rgba($white, 0.9) !important;
+        border: none !important;
+        border-radius: 8px;
+        box-shadow: '0 4px 12px rgba(0,0,0,0.1)';
+        padding: 10px !important;
     }
 }

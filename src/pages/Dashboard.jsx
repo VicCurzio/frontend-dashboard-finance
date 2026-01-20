@@ -83,7 +83,7 @@ const Dashboard = () => {
                                 fontSize={12}
                             />
                             <Tooltip
-                                contentStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', border: 'none', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                                wrapperClassName="custom-tooltip-wrapper"
                                 labelFormatter={(label) => `Fecha: ${label.split('-').reverse().join('/')}`}
                             />
                             <Legend verticalAlign="top" height={36} iconType="circle" />

@@ -1,23 +1,30 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
-import './styles/main.scss';
 import Login from './pages/Login';
-import Register from './pages/Register'; // 1. Importar Register
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Ventas from './pages/Ventas';
 import Gastos from './pages/Gastos';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
+import './styles/main.scss';
+import PublicRoute from './components/PublicRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Rutas Públicas */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} /> {/* 2. Agregar la ruta aquí */}
+        <Route path="/login" element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        } />
+        <Route path="/register" element={
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        } />
 
-        {/* Rutas Privadas */}
         <Route
           element={
             <ProtectedRoute>
@@ -30,7 +37,6 @@ function App() {
           <Route path="/gastos" element={<Gastos />} />
         </Route>
 
-        {/* Redirección por defecto */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

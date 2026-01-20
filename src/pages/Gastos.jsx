@@ -53,7 +53,6 @@ const Gastos = () => {
             <GastoForm onGastoCreated={refresh} />
             <DataTable items={data} onEdit={setEditando} onDelete={handleDeleteClick} esGasto={true} />
 
-            {/* Modal de Confirmación */}
             <ConfirmModal
                 isOpen={modalConfig.show}
                 title="Eliminar Registro"

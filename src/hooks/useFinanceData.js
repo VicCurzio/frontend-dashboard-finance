@@ -7,7 +7,6 @@ const useFinanceData = (tipo) => {
     const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date().toISOString().slice(0, 7));
     const [editando, setEditando] = useState(null);
 
-    // Nuevo estado para el modal
     const [modalConfig, setModalConfig] = useState({ show: false, id: null });
 
     const fetchData = useCallback(async () => {
@@ -33,7 +32,6 @@ const useFinanceData = (tipo) => {
         else setFechaSeleccionada(hoy.toISOString().split('T')[0]);
     };
 
-    // Abre el modal en lugar de disparar el delete directamente
     const handleDeleteClick = (id) => {
         setModalConfig({ show: true, id });
     };
@@ -74,10 +72,10 @@ const useFinanceData = (tipo) => {
         setFechaSeleccionada,
         editando,
         setEditando,
-        modalConfig, // Exportamos configuración del modal
+        modalConfig,
         setModalConfig,
         handleTipoFiltroChange,
-        handleDeleteClick, // Usamos este en la tabla
+        handleDeleteClick,
         confirmDelete,
         handleImportJson,
         refresh: fetchData
