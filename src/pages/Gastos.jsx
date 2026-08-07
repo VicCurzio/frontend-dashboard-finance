@@ -28,7 +28,7 @@ const Gastos = () => {
     return (
         <div className="gastos-view">
             <div className="header-section">
-                <h1>📉 Gestión de Gastos</h1>
+                <h1>Gestión de Gastos</h1>
                 <FilterBar
                     tipoFiltro={tipoFiltro}
                     onTipoChange={handleTipoFiltroChange}

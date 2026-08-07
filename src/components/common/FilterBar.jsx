@@ -4,7 +4,7 @@ import CustomButton from './CustomButton';
 const FilterBar = ({ tipoFiltro, onTipoChange, fechaSeleccionada, onFechaChange, onSearch, onImport }) => (
     <div className="actions-wrapper">
         <label className="import-label">
-            📥 Importar JSON
+            Importar JSON
             <input type="file" accept=".json" onChange={onImport} hidden />
         </label>
 
@@ -21,7 +21,7 @@ const FilterBar = ({ tipoFiltro, onTipoChange, fechaSeleccionada, onFechaChange,
                 onChange={(e) => onFechaChange(e.target.value)}
                 className="search-input"
             />
-            <CustomButton variant="success" onClick={onSearch}>🔍</CustomButton>
+            <CustomButton variant="success" onClick={onSearch}>Buscar</CustomButton>
         </div>
     </div>
 );

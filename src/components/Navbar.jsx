@@ -24,7 +24,7 @@ const Navbar = () => {
         <>
             <nav className="navbar">
                 <div className="logo">
-                    <span className="icon">💰</span> Finanzas Pro
+                    Finanzas Pro
                 </div>
                 <div className="user-menu-container">
                     <div className="user-trigger" onClick={() => setShowDropdown(!showDropdown)}>
@@ -43,13 +43,13 @@ const Navbar = () => {
                             <ul className="dropdown-menu">
                                 <li>
                                     <Link to="/perfil" onClick={() => setShowDropdown(false)}>
-                                        👤 Mi Perfil
+                                        Mi Perfil
                                     </Link>
                                 </li>
                                 <li className="divider"></li>
                                 <li>
                                     <button onClick={handleOpenModal} className="logout-btn-item">
-                                        🚪 Cerrar Sesión
+                                        Cerrar Sesión
                                     </button>
                                 </li>
                             </ul>

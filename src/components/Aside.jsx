@@ -6,13 +6,13 @@ const Aside = () => {
             <div className="menu-label">Principal</div>
             <nav className="nav-links">
                 <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
-                    📊 Dashboard
+                    Dashboard
                 </NavLink>
                 <NavLink to="/ventas" className={({ isActive }) => isActive ? 'active' : ''}>
-                    📈 Ventas
+                    Ventas
                 </NavLink>
                 <NavLink to="/gastos" className={({ isActive }) => isActive ? 'active' : ''}>
-                    📉 Gastos
+                    Gastos
                 </NavLink>
             </nav>
         </aside>

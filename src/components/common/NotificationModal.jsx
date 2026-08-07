@@ -8,7 +8,7 @@ const NotificationModal = ({ isOpen, title, message, onConfirm, type = 'success'
             <div className="modal-content glass-card scale-up">
                 <div className="modal-header">
                     <div className={`icon-circle ${type}`}>
-                        {type === 'success' ? '✓' : 'ℹ'}
+                        {type === 'success' ? 'OK' : 'INFO'}
                     </div>
                     <h3 className="text-center">{title}</h3>
                 </div>

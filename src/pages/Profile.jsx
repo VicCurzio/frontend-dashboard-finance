@@ -7,7 +7,7 @@ const Profile = () => {
 
     return (
         <div className="profile-page">
-            <h1>👤 Perfil de Usuario</h1>
+            <h1>Perfil de Usuario</h1>
             <div className="card">
                 <p><strong>Nombre:</strong> {user?.nombre}</p>
                 <p><strong>Email:</strong> {user?.email}</p>

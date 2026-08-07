@@ -50,7 +50,7 @@ const Dashboard = () => {
     return (
         <div className="dashboard-container">
             <header className="dashboard-header">
-                <h1>📊 Panel de Control</h1>
+                <h1>Panel de Control</h1>
                 <p className="subtitle">Resumen de tu actividad financiera</p>
             </header>
 
@@ -118,7 +118,7 @@ const Dashboard = () => {
                     </div>
                 ) : (
                     <div className="no-data-card" style={{ padding: '60px 20px', textAlign: 'center', color: '#95a5a6' }}>
-                        <p style={{ fontSize: '1.2rem', marginBottom: '8px' }}>📉 No hay gráficos que mostrar</p>
+                        <p style={{ fontSize: '1.2rem', marginBottom: '8px' }}>No hay gráficos que mostrar</p>
                         <span style={{ fontSize: '0.9rem' }}>Aún no tienes movimientos registrados en este periodo.</span>
                     </div>
                 )}
